@@ -1,0 +1,7 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended", "tslint-config-swimlane/base"],
+  "jsRules": {},
+  "rules": {},
+  "rulesDirectory": []
+}

@@ -1,0 +1,31 @@
+import { ApolloServer } from 'apollo-server-express';
+import * as Express from 'express';
+import 'reflect-metadata';
+import { buildSchema } from 'type-graphql';
+import { GeoIpResolver } from './GeoIpService';
+import { RdapResolver } from './RdapService';
+import { ReverseDnsResolver } from './ReverseDnsService';
+
+async function startServer() {
+  const schema = await buildSchema({
+    resolvers: [GeoIpResolver, RdapResolver, ReverseDnsResolver],
+    emitSchemaFile: true,
+    nullableByDefault: true,
+    // container: Container,
+  });
+
+  const app = Express();
+
+  const server = new ApolloServer({
+    schema,
+    // context: (): Models => ({
+    //   userModel: UserModel,
+    // }),
+  });
+  server.applyMiddleware({ app });
+  const PORT = process.env.PORT || 8080;
+  app.listen(PORT, () => {
+    console.log(`server is running on PORT ${PORT}`);
+  });
+}
+startServer();

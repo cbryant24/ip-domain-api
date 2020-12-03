@@ -1,0 +1,44 @@
+import { ApolloServer } from 'apollo-server-express';
+import * as Express from 'express';
+import 'reflect-metadata';
+import { buildSchema } from 'type-graphql';
+import * as Mongoose from 'mongoose';
+import { UserResolver, UserModel } from './UserService';
+import { Container } from 'typedi';
+import { dbOptions, url } from './db';
+
+export interface Models {
+  userModel: typeof UserModel;
+}
+Container.set({ id: 'USER', factory: () => UserModel });
+
+async function startServer() {
+  const schema = await buildSchema({
+    resolvers: [UserResolver],
+    emitSchemaFile: true,
+    nullableByDefault: true,
+    container: Container,
+  });
+
+  const app = Express();
+
+  Mongoose.connect(url, dbOptions)
+    .then((res) => {
+      console.log('Mongodb is connected successfully', res);
+      const server = new ApolloServer({
+        schema,
+        context: (): Models => ({
+          userModel: UserModel,
+        }),
+      });
+      server.applyMiddleware({ app });
+      const PORT = process.env.PORT;
+      app.listen(PORT, () => {
+        console.log(`server is running on PORT ${PORT}`);
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+startServer();
