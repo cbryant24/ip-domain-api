@@ -1,5 +1,3 @@
-// const whois = require('whois');
-const dns = require('dns');
 import { Arg, Query, Resolver } from 'type-graphql';
 import { ReverseDnsSchema } from './ReverseDnsSchema';
 import { ReverseDnsResponse } from './ReverseDnsResponse';
@@ -29,35 +27,28 @@ export class ReverseDnsResolver {
         error: 'Invalid Ip Address Provided',
         data: undefined,
       };
-    try {
-      const reverseDnsData = await reverseDns<ReverseDnsSchema>(ip);
-      console.log('IM the reverse data', reverseDnsData);
 
-      if (reverseDnsData) {
-        if (!reverseDnsData) {
-          return {
-            success: false,
-            error: 'No ReverseDns Data',
-            data: undefined,
-          };
-        } else {
-          return {
-            success: true,
-            error: undefined,
-            data: reverseDnsData,
-          };
-        }
-      } else {
+    try {
+      const reverseDnsData = await reverseDns<String[]>(ip);
+
+      if (!reverseDnsData) {
         return {
           success: false,
-          error: 'Invalid Ip or Domain provided',
+          error: 'No ReverseDns Data',
           data: undefined,
+        };
+      } else {
+        console.log('IM THE REAL DATA', reverseDnsData);
+        return {
+          success: true,
+          error: undefined,
+          data: { reverseDns: reverseDnsData },
         };
       }
     } catch (err) {
       return {
         success: false,
-        error: `Err: ${err}`,
+        error: 'No ReverseDns Data',
         data: undefined,
       };
     }

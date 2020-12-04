@@ -16,10 +16,11 @@ const type_graphql_1 = require("type-graphql");
 const GeoIpService_1 = require("./GeoIpService");
 const RdapService_1 = require("./RdapService");
 const ReverseDnsService_1 = require("./ReverseDnsService");
+const PingService_1 = require("./PingService");
 function startServer() {
     return __awaiter(this, void 0, void 0, function* () {
         const schema = yield type_graphql_1.buildSchema({
-            resolvers: [GeoIpService_1.GeoIpResolver, RdapService_1.RdapResolver, ReverseDnsService_1.ReverseDnsResolver],
+            resolvers: [GeoIpService_1.GeoIpResolver, RdapService_1.RdapResolver, ReverseDnsService_1.ReverseDnsResolver, PingService_1.PingResolver],
             emitSchemaFile: true,
             nullableByDefault: true,
         });

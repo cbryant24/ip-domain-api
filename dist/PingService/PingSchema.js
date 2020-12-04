@@ -9,25 +9,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ReverseDnsResponse = void 0;
+exports.PingSchema = void 0;
 const type_graphql_1 = require("type-graphql");
-const ReverseDnsSchema_1 = require("./ReverseDnsSchema");
-let ReverseDnsResponse = class ReverseDnsResponse {
+let PingSchema = class PingSchema {
 };
 __decorate([
     type_graphql_1.Field(),
-    __metadata("design:type", Boolean)
-], ReverseDnsResponse.prototype, "success", void 0);
-__decorate([
-    type_graphql_1.Field(() => ReverseDnsSchema_1.ReverseDnsSchema),
-    __metadata("design:type", ReverseDnsSchema_1.ReverseDnsSchema)
-], ReverseDnsResponse.prototype, "data", void 0);
-__decorate([
-    type_graphql_1.Field({ nullable: true }),
     __metadata("design:type", String)
-], ReverseDnsResponse.prototype, "error", void 0);
-ReverseDnsResponse = __decorate([
-    type_graphql_1.ObjectType({ description: 'Rdap Response' })
-], ReverseDnsResponse);
-exports.ReverseDnsResponse = ReverseDnsResponse;
-//# sourceMappingURL=ReverseDnsResponse.js.map
+], PingSchema.prototype, "host", void 0);
+__decorate([
+    type_graphql_1.Field(),
+    __metadata("design:type", String)
+], PingSchema.prototype, "numeric_host", void 0);
+__decorate([
+    type_graphql_1.Field(),
+    __metadata("design:type", Boolean)
+], PingSchema.prototype, "alive", void 0);
+__decorate([
+    type_graphql_1.Field(),
+    __metadata("design:type", String)
+], PingSchema.prototype, "output", void 0);
+__decorate([
+    type_graphql_1.Field(),
+    __metadata("design:type", String)
+], PingSchema.prototype, "orgTechPhone", void 0);
+__decorate([
+    type_graphql_1.Field(),
+    __metadata("design:type", String)
+], PingSchema.prototype, "orgTechEmail", void 0);
+PingSchema = __decorate([
+    type_graphql_1.ObjectType({ description: 'Ping Schema' })
+], PingSchema);
+exports.PingSchema = PingSchema;
+//# sourceMappingURL=PingSchema.js.map

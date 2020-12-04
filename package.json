@@ -23,6 +23,7 @@
     "graphql": "^15.4.0",
     "ip-address": "^7.1.0",
     "mongoose": "^5.11.0",
+    "ping": "^0.3.0",
     "reflect-metadata": "^0.1.13",
     "type-graphql": "^1.1.1",
     "typedi": "^0.8.0",

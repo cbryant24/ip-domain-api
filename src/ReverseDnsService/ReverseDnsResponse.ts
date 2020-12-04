@@ -6,7 +6,7 @@ export class ReverseDnsResponse {
   @Field()
   success: boolean;
 
-  @Field({ nullable: true })
+  @Field(() => ReverseDnsSchema)
   data?: ReverseDnsSchema;
 
   @Field({ nullable: true })

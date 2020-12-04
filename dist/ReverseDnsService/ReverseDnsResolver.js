@@ -22,7 +22,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReverseDnsResolver = void 0;
-const dns = require('dns');
 const type_graphql_1 = require("type-graphql");
 const ReverseDnsSchema_1 = require("./ReverseDnsSchema");
 const ReverseDnsResponse_1 = require("./ReverseDnsResponse");
@@ -49,35 +48,26 @@ let ReverseDnsResolver = class ReverseDnsResolver {
                 };
             try {
                 const reverseDnsData = yield utilities_1.reverseDns(ip);
-                console.log('IM the reverse data', reverseDnsData);
-                if (reverseDnsData) {
-                    if (!reverseDnsData) {
-                        return {
-                            success: false,
-                            error: 'No ReverseDns Data',
-                            data: undefined,
-                        };
-                    }
-                    else {
-                        return {
-                            success: true,
-                            error: undefined,
-                            data: reverseDnsData,
-                        };
-                    }
-                }
-                else {
+                if (!reverseDnsData) {
                     return {
                         success: false,
-                        error: 'Invalid Ip or Domain provided',
+                        error: 'No ReverseDns Data',
                         data: undefined,
+                    };
+                }
+                else {
+                    console.log('IM THE REAL DATA', reverseDnsData);
+                    return {
+                        success: true,
+                        error: undefined,
+                        data: { reverseDns: reverseDnsData },
                     };
                 }
             }
             catch (err) {
                 return {
                     success: false,
-                    error: `Err: ${err}`,
+                    error: 'No ReverseDns Data',
                     data: undefined,
                 };
             }

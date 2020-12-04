@@ -9,25 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ReverseDnsResponse = void 0;
+exports.PingResponse = void 0;
 const type_graphql_1 = require("type-graphql");
-const ReverseDnsSchema_1 = require("./ReverseDnsSchema");
-let ReverseDnsResponse = class ReverseDnsResponse {
+const PingSchema_1 = require("./PingSchema");
+let PingResponse = class PingResponse {
 };
 __decorate([
     type_graphql_1.Field(),
     __metadata("design:type", Boolean)
-], ReverseDnsResponse.prototype, "success", void 0);
+], PingResponse.prototype, "success", void 0);
 __decorate([
-    type_graphql_1.Field(() => ReverseDnsSchema_1.ReverseDnsSchema),
-    __metadata("design:type", ReverseDnsSchema_1.ReverseDnsSchema)
-], ReverseDnsResponse.prototype, "data", void 0);
+    type_graphql_1.Field({ nullable: true }),
+    __metadata("design:type", PingSchema_1.PingSchema)
+], PingResponse.prototype, "data", void 0);
 __decorate([
     type_graphql_1.Field({ nullable: true }),
     __metadata("design:type", String)
-], ReverseDnsResponse.prototype, "error", void 0);
-ReverseDnsResponse = __decorate([
-    type_graphql_1.ObjectType({ description: 'Rdap Response' })
-], ReverseDnsResponse);
-exports.ReverseDnsResponse = ReverseDnsResponse;
-//# sourceMappingURL=ReverseDnsResponse.js.map
+], PingResponse.prototype, "error", void 0);
+PingResponse = __decorate([
+    type_graphql_1.ObjectType({ description: 'Ping Response' })
+], PingResponse);
+exports.PingResponse = PingResponse;
+//# sourceMappingURL=PingResponse.js.map

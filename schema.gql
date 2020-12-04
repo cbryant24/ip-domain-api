@@ -23,8 +23,26 @@ type GeoIpSchema {
   timezone: String
 }
 
+"""Ping Response"""
+type PingResponse {
+  data: PingSchema
+  error: String
+  success: Boolean
+}
+
+"""Ping Schema"""
+type PingSchema {
+  alive: Boolean
+  host: String
+  numeric_host: String
+  orgTechEmail: String
+  orgTechPhone: String
+  output: String
+}
+
 type Query {
   getGeoIpData(domain: String, ip: String): GeoIpResponse
+  getPingData(domain: String, ip: String): PingResponse
   getRdapData(domain: String, ip: String): RdapResponse
   getReverseDnsData(domain: String, ip: String): ReverseDnsResponse
 }

@@ -5,10 +5,11 @@ import { buildSchema } from 'type-graphql';
 import { GeoIpResolver } from './GeoIpService';
 import { RdapResolver } from './RdapService';
 import { ReverseDnsResolver } from './ReverseDnsService';
+import { PingResolver } from './PingService';
 
 async function startServer() {
   const schema = await buildSchema({
-    resolvers: [GeoIpResolver, RdapResolver, ReverseDnsResolver],
+    resolvers: [GeoIpResolver, RdapResolver, ReverseDnsResolver, PingResolver],
     emitSchemaFile: true,
     nullableByDefault: true,
     // container: Container,

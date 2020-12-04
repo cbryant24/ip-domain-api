@@ -1,18 +1,18 @@
 // const whois = require('whois');
-const whois = require('whois-json');
+const ping = require('ping');
 import { Arg, Query, Resolver } from 'type-graphql';
-import { RdapSchema } from './RdapSchema';
-import { RdapResponse } from './RdapResponse';
+import { PingSchema } from './PingSchema';
+import { PingResponse } from './PingResponse';
 import { validIp, getIpFromDomain } from '../utilities';
 
-@Resolver(() => RdapSchema)
-export class RdapResolver {
-  @Query(() => RdapResponse)
-  async getRdapData(
+@Resolver(() => PingSchema)
+export class PingResolver {
+  @Query(() => PingResponse)
+  async getPingData(
     @Arg('ip') ip: string,
     @Arg('domain') domain: string
     // @Ctx() ctx: any
-  ): Promise<RdapResponse> {
+  ): Promise<PingResponse> {
     try {
       if (domain && !ip) ip = await getIpFromDomain(domain);
     } catch (err) {
@@ -29,9 +29,13 @@ export class RdapResolver {
         error: 'Invalid Ip Address Provided',
         data: undefined,
       };
-    const rDapData = await whois(ip);
-    if (rDapData) {
-      if (!rDapData) {
+    const pingData: PingSchema = await ping.promise.probe(ip, {
+      timeout: 10,
+      extra: ['-i', '2'],
+    });
+    console.log('IM THE pingData!', pingData);
+    if (pingData) {
+      if (!pingData) {
         return {
           success: false,
           error: 'No RDAP Data',
@@ -41,7 +45,7 @@ export class RdapResolver {
         return {
           success: true,
           error: undefined,
-          data: rDapData,
+          data: pingData,
         };
       }
     } else {

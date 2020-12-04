@@ -21,14 +21,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RdapResolver = void 0;
-const whois = require('whois-json');
+exports.PingResolver = void 0;
+const ping = require('ping');
 const type_graphql_1 = require("type-graphql");
-const RdapSchema_1 = require("./RdapSchema");
-const RdapResponse_1 = require("./RdapResponse");
+const PingSchema_1 = require("./PingSchema");
+const PingResponse_1 = require("./PingResponse");
 const utilities_1 = require("../utilities");
-let RdapResolver = class RdapResolver {
-    getRdapData(ip, domain) {
+let PingResolver = class PingResolver {
+    getPingData(ip, domain) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 if (domain && !ip)
@@ -47,9 +47,13 @@ let RdapResolver = class RdapResolver {
                     error: 'Invalid Ip Address Provided',
                     data: undefined,
                 };
-            const rDapData = yield whois(ip);
-            if (rDapData) {
-                if (!rDapData) {
+            const pingData = yield ping.promise.probe(ip, {
+                timeout: 10,
+                extra: ['-i', '2'],
+            });
+            console.log('IM THE pingData!', pingData);
+            if (pingData) {
+                if (!pingData) {
                     return {
                         success: false,
                         error: 'No RDAP Data',
@@ -60,7 +64,7 @@ let RdapResolver = class RdapResolver {
                     return {
                         success: true,
                         error: undefined,
-                        data: rDapData,
+                        data: pingData,
                     };
                 }
             }
@@ -75,15 +79,15 @@ let RdapResolver = class RdapResolver {
     }
 };
 __decorate([
-    type_graphql_1.Query(() => RdapResponse_1.RdapResponse),
+    type_graphql_1.Query(() => PingResponse_1.PingResponse),
     __param(0, type_graphql_1.Arg('ip')),
     __param(1, type_graphql_1.Arg('domain')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
-], RdapResolver.prototype, "getRdapData", null);
-RdapResolver = __decorate([
-    type_graphql_1.Resolver(() => RdapSchema_1.RdapSchema)
-], RdapResolver);
-exports.RdapResolver = RdapResolver;
-//# sourceMappingURL=RdapResolver.js.map
+], PingResolver.prototype, "getPingData", null);
+PingResolver = __decorate([
+    type_graphql_1.Resolver(() => PingSchema_1.PingSchema)
+], PingResolver);
+exports.PingResolver = PingResolver;
+//# sourceMappingURL=PingResolver.js.map
