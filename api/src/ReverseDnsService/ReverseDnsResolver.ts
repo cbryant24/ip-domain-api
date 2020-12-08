@@ -38,7 +38,6 @@ export class ReverseDnsResolver {
           data: undefined,
         };
       } else {
-        console.log('IM THE REAL DATA', reverseDnsData);
         return {
           success: true,
           error: undefined,

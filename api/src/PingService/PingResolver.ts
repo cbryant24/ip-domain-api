@@ -33,7 +33,6 @@ export class PingResolver {
       timeout: 10,
       extra: ['-i', '2'],
     });
-    console.log('IM THE pingData!', pingData);
     if (pingData) {
       if (!pingData) {
         return {

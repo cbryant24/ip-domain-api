@@ -1,6 +1,5 @@
 import * as IpAddress from 'ip-address';
 const dns = require('dns');
-import { ReverseDnsSchema } from '../ReverseDnsService';
 
 export const validIp = (ip: string): boolean => {
   const ip4Address = IpAddress.Address4.isValid(ip);
@@ -41,7 +40,6 @@ export function reverseDns<T>(ip: String): Promise<T> {
     }, 2000);
 
     dns.reverse(ip, (err: { message: String }, data: T) => {
-      console.log('IM the reverse data', data);
       clearTimeout(dnsTimer);
       if (err) reject(`Invalid domain provided for: ${err.message}`);
 

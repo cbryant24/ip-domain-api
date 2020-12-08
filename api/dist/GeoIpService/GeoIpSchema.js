@@ -14,7 +14,7 @@ const type_graphql_1 = require("type-graphql");
 let GeoIpSchema = class GeoIpSchema {
 };
 __decorate([
-    type_graphql_1.Field((type) => [Number]),
+    type_graphql_1.Field(() => [Number]),
     __metadata("design:type", Array)
 ], GeoIpSchema.prototype, "range", void 0);
 __decorate([
@@ -38,7 +38,7 @@ __decorate([
     __metadata("design:type", String)
 ], GeoIpSchema.prototype, "city", void 0);
 __decorate([
-    type_graphql_1.Field((type) => [Number]),
+    type_graphql_1.Field(() => [Number]),
     __metadata("design:type", Array)
 ], GeoIpSchema.prototype, "ll", void 0);
 __decorate([

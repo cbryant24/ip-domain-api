@@ -14,7 +14,7 @@ const type_graphql_1 = require("type-graphql");
 let ReverseDnsSchema = class ReverseDnsSchema {
 };
 __decorate([
-    type_graphql_1.Field((type) => [String]),
+    type_graphql_1.Field(() => [String]),
     __metadata("design:type", Array)
 ], ReverseDnsSchema.prototype, "reverseDns", void 0);
 ReverseDnsSchema = __decorate([

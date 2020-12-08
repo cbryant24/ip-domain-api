@@ -1,0 +1,1 @@
+{"version":3,"file":"ReverseDnsSchema.js","sourceRoot":"","sources":["../../src/ReverseDnsService/ReverseDnsSchema.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,+CAAiD;AAGjD,IAAa,gBAAgB,GAA7B,MAAa,gBAAgB;CAG5B,CAAA;AADC;IADC,oBAAK,CAAC,GAAG,EAAE,CAAC,CAAC,MAAM,CAAC,CAAC;;oDACD;AAFV,gBAAgB;IAD5B,yBAAU,CAAC,EAAE,WAAW,EAAE,oBAAoB,EAAE,CAAC;GACrC,gBAAgB,CAG5B;AAHY,4CAAgB"}

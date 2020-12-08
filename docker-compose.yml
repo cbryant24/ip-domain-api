@@ -2,23 +2,22 @@ version: '3.1'
 
 services:
   reverseproxy:
-    image: nginx
+    image: cbryant23/nginx-node
     container_name: nginx
+    networks:
+      - app-network
     ports:
-      - 80:8080
+      - 80
   nodejs:
-    build:
-      context: .
-      dockerfile: typescript.Dockerfile
+    image: cbryant23/ip-api
     container_name: nodejs
     restart: unless-stopped
     ports:
-      - '80:8080'
+      - 80:8080
     volumes:
       - .:/home/node/app
     networks:
       - app-network
-    command: node ./dist/server.js
 
 networks:
   app-network:

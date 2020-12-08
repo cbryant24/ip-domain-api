@@ -1,5 +1,4 @@
-import { Field, ObjectType, Float } from 'type-graphql';
-// import { IsEmail, Length } from 'class-validator';
+import { Field, ObjectType } from 'type-graphql';
 
 @ObjectType({ description: 'Ping Schema' })
 export class PingSchema {

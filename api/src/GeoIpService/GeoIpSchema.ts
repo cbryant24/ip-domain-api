@@ -3,7 +3,7 @@ import { Field, ObjectType } from 'type-graphql';
 
 @ObjectType({ description: 'GeoIp Schema' })
 export class GeoIpSchema {
-  @Field((type) => [Number])
+  @Field(() => [Number])
   range: Number[];
 
   @Field()
@@ -21,7 +21,7 @@ export class GeoIpSchema {
   @Field()
   city: String;
 
-  @Field((type) => [Number])
+  @Field(() => [Number])
   ll: Number[];
 
   @Field()
