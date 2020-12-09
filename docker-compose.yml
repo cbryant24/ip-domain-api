@@ -8,16 +8,25 @@ services:
       - app-network
     ports:
       - 80
+      - 4000
   nodejs:
     image: cbryant23/ip-api
     container_name: nodejs
     restart: unless-stopped
     ports:
-      - 80:8080
-    volumes:
-      - .:/home/node/app
+      - 4000:8080
     networks:
       - app-network
+  worker:
+    image: cbryant23/node-worker
+    container_name: worker
+    restart: unless-stopped
+    ports:
+      - 80:3000
+    networks:
+      - app-network
+    volumes:
+      - ./worker/dist:/app/node/worker/dist/
 
 networks:
   app-network:
