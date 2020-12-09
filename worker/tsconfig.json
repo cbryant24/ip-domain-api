@@ -28,6 +28,7 @@
   "include": [
     "./src/**/*.tsx",
     "./src/**/*.ts",
+    "./typings-custom/**/*.ts",
     "./src/*.ts"
   ]
 }

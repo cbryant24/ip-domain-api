@@ -17,6 +17,8 @@ services:
       - 4000:8080
     networks:
       - app-network
+    volumes:
+      - ./api/dist:/app/node/api/dist
   worker:
     image: cbryant23/node-worker
     container_name: worker
@@ -26,7 +28,9 @@ services:
     networks:
       - app-network
     volumes:
-      - ./worker/dist:/app/node/worker/dist/
+      - ./worker/dist:/app/node/worker/dist
+      - ./worker/public:/app/node/worker/public
+      - ./worker/node_modules:/app/node/worker/node_modules
 
 networks:
   app-network:

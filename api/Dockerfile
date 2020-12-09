@@ -10,8 +10,6 @@ COPY package-lock.json /app/node/api
 RUN npm install
 
 # Bundle app source
-COPY . /app/node/api
-RUN npm run build
 
 EXPOSE 4000
 CMD [ "npm", "start" ]
