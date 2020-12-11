@@ -9,6 +9,7 @@ export const validIp = (ip: string): boolean => {
 };
 
 export const getIpFromDomain = (domain: string): Promise<string> => {
+
   const ip: Promise<string> = new Promise((resolve, reject): void => {
     const ipRetrieverTimer = setTimeout(() => {
       reject('The domain ip cannot be found');

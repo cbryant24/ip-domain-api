@@ -11,7 +11,6 @@ export class PingResolver {
   async getPingData(
     @Arg('ip') ip: string,
     @Arg('domain') domain: string
-    // @Ctx() ctx: any
   ): Promise<PingResponse> {
     try {
       if (domain && !ip) ip = await getIpFromDomain(domain);

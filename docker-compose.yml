@@ -9,29 +9,33 @@ services:
     ports:
       - 80
       - 4000
-  nodejs:
-    image: cbryant23/ip-api
-    container_name: nodejs
+  graphapi:
+    image: cbryant23/graph-api
+    container_name: graphapi
     restart: unless-stopped
+    deploy:
+      replicas: 3
     ports:
       - 4000:8080
     networks:
       - app-network
     volumes:
       - ./api/dist:/app/node/api/dist
+      - ./api/node_modules:/app/node/api/node_modules
   worker:
     image: cbryant23/node-worker
     container_name: worker
     restart: unless-stopped
+    depends_on:
+      - graphapi
     ports:
       - 80:3000
     networks:
       - app-network
     volumes:
       - ./worker/dist:/app/node/worker/dist
-      - ./worker/public:/app/node/worker/public
-      - ./worker/node_modules:/app/node/worker/node_modules
+      - ./worker/client/build:/app/node/worker/client/build
 
 networks:
   app-network:
-    driver: bridge
+    driver: overlay

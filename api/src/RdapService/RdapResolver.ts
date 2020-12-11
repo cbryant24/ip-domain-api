@@ -11,7 +11,6 @@ export class RdapResolver {
   async getRdapData(
     @Arg('ip') ip: string,
     @Arg('domain') domain: string
-    // @Ctx() ctx: any
   ): Promise<RdapResponse> {
     try {
       if (domain && !ip) ip = await getIpFromDomain(domain);

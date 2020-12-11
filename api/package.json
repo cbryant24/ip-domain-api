@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "ts-node-dev --respawn src/server.ts",
     "build": "tsc",
-    "start:run": "nodemon dist/server.js",
-    "start": "node dist/server.js"
+    "watch:build": "tsc -w",
+    "start:server": "nodemon dist/server.js",
+    "start": "concurrently \"npm run watch:build\" \"npm run start:server\" "
   },
   "keywords": [],
   "author": "",

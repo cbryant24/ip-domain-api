@@ -30,7 +30,6 @@ function reverseDns(ip) {
             reject('The domain ip cannot be found');
         }, 2000);
         dns.reverse(ip, (err, data) => {
-            console.log('IM the reverse data', data);
             clearTimeout(dnsTimer);
             if (err)
                 reject(`Invalid domain provided for: ${err.message}`);

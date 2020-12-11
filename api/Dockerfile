@@ -7,9 +7,9 @@ WORKDIR /app/node/api
 # Install app dependencies
 COPY package.json /app/node/api
 COPY package-lock.json /app/node/api
-RUN npm install
+RUN npm install --production
 
 # Bundle app source
 
 EXPOSE 4000
-CMD [ "npm", "start" ]
+CMD [ "node", "dist/server.js" ]

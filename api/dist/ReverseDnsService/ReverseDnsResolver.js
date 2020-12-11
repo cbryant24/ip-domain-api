@@ -56,7 +56,6 @@ let ReverseDnsResolver = class ReverseDnsResolver {
                     };
                 }
                 else {
-                    console.log('IM THE REAL DATA', reverseDnsData);
                     return {
                         success: true,
                         error: undefined,
