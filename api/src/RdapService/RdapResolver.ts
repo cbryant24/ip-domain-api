@@ -29,25 +29,17 @@ export class RdapResolver {
         data: undefined,
       };
     const rDapData = await whois(ip);
-    if (rDapData) {
-      if (!rDapData) {
-        return {
-          success: false,
-          error: 'No RDAP Data',
-          data: undefined,
-        };
-      } else {
-        return {
-          success: true,
-          error: undefined,
-          data: rDapData,
-        };
-      }
-    } else {
+    if (!rDapData) {
       return {
         success: false,
-        error: 'Invalid Ip or Domain provided',
+        error: 'No RDAP Data',
         data: undefined,
+      };
+    } else {
+      return {
+        success: true,
+        error: undefined,
+        data: rDapData,
       };
     }
   }

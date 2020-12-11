@@ -9,7 +9,6 @@ export class ReverseDnsResolver {
   async getReverseDnsData(
     @Arg('ip') ip: string,
     @Arg('domain') domain: string
-    // @Ctx() ctx: any
   ): Promise<ReverseDnsResponse> {
     try {
       if (domain && !ip) ip = await getIpFromDomain(domain);

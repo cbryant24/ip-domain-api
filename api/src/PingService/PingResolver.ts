@@ -32,25 +32,18 @@ export class PingResolver {
       timeout: 10,
       extra: ['-i', '2'],
     });
-    if (pingData) {
-      if (!pingData) {
-        return {
-          success: false,
-          error: 'No RDAP Data',
-          data: undefined,
-        };
-      } else {
-        return {
-          success: true,
-          error: undefined,
-          data: pingData,
-        };
-      }
-    } else {
+    
+    if (!pingData) {
       return {
         success: false,
-        error: 'Invalid Ip or Domain provided',
+        error: 'No Ping Data',
         data: undefined,
+      };
+    } else {
+      return {
+        success: true,
+        error: undefined,
+        data: pingData,
       };
     }
   }

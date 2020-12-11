@@ -12,16 +12,12 @@ async function startServer() {
     resolvers: [GeoIpResolver, RdapResolver, ReverseDnsResolver, PingResolver],
     emitSchemaFile: true,
     nullableByDefault: true,
-    // container: Container,
   });
 
   const app = Express();
 
   const server = new ApolloServer({
-    schema,
-    // context: (): Models => ({
-    //   userModel: UserModel,
-    // }),
+    schema
   });
   server.applyMiddleware({ app });
   const PORT = process.env.PORT || 8080;
@@ -29,4 +25,5 @@ async function startServer() {
     console.log(`server is running on PORT ${PORT}`);
   });
 }
+
 startServer();

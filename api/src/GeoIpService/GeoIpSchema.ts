@@ -1,5 +1,4 @@
 import { Field, ObjectType } from 'type-graphql';
-// import { IsEmail, Length } from 'class-validator';
 
 @ObjectType({ description: 'GeoIp Schema' })
 export class GeoIpSchema {
